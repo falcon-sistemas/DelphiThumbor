@@ -2,7 +2,7 @@ object frmThumbor: TfrmThumbor
   Left = 0
   Top = 0
   Caption = 'Thumbor'
-  ClientHeight = 438
+  ClientHeight = 451
   ClientWidth = 1199
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -11,10 +11,11 @@ object frmThumbor: TfrmThumbor
   Font.Name = 'Tahoma'
   Font.Style = []
   OldCreateOrder = False
+  Position = poMainFormCenter
   OnCreate = FormCreate
   DesignSize = (
     1199
-    438)
+    451)
   PixelsPerInch = 96
   TextHeight = 13
   object lbl1: TLabel
@@ -49,7 +50,7 @@ object frmThumbor: TfrmThumbor
     Left = 702
     Top = 23
     Width = 475
-    Height = 388
+    Height = 401
     Anchors = [akLeft, akTop, akRight, akBottom]
     AutoSize = True
     ExplicitHeight = 481
@@ -73,9 +74,10 @@ object frmThumbor: TfrmThumbor
     Left = 21
     Top = 296
     Width = 660
-    Height = 115
+    Height = 128
     Anchors = [akLeft, akTop, akBottom]
     TabOrder = 1
+    ExplicitHeight = 115
   end
   object edtUrlServerThumbor: TEdit
     Left = 21
