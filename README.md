@@ -41,5 +41,20 @@ begin
   end;
 ```
 
+```delphi
+var
+  Thumbor: TThumbor;
+begin
+  Thumbor := TThumbor.Create('https://urlserverthumbor.com', 'secretkey');
+  try
+    Thumbor
+      .BuildImage('path_image')
+      .Quality(90)
+      .ToUrl();
+  finally
+    Thumbor.Free;
+  end;
+```
+
 <hr />
 <div style="text-align:right">Marlon Nardi</div>
