@@ -62,6 +62,13 @@ object frmThumbor: TfrmThumbor
     Height = 13
     Caption = 'X'
   end
+  object lbl6: TLabel
+    Left = 165
+    Top = 186
+    Width = 34
+    Height = 13
+    Caption = 'Quality'
+  end
   object edtSecretKey: TEdit
     Left = 21
     Top = 42
@@ -96,7 +103,7 @@ object frmThumbor: TfrmThumbor
     TextHint = 'Url Path Image'
   end
   object chkUseSmart: TCheckBox
-    Left = 168
+    Left = 258
     Top = 206
     Width = 97
     Height = 17
@@ -133,5 +140,15 @@ object frmThumbor: TfrmThumbor
     MinValue = 0
     TabOrder = 7
     Value = 0
+  end
+  object edtQuality: TSpinEdit
+    Left = 165
+    Top = 204
+    Width = 73
+    Height = 22
+    MaxValue = 0
+    MinValue = 0
+    TabOrder = 8
+    Value = 90
   end
 end

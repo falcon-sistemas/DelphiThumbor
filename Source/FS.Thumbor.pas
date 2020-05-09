@@ -11,10 +11,7 @@ unit FS.Thumbor;
 interface
 
 uses
-  System.Classes,
-  System.SysUtils,
-  System.NetEncoding,
-  System.Hash;
+  System.Classes, System.SysUtils, System.NetEncoding, System.Hash;
 
 type
   TThumbor = class(TObject)
@@ -25,13 +22,14 @@ type
     FBuildImage: string;
     FWidth: Integer;
     FHeight: Integer;
+    FQuality: Integer;
     FSmart: Boolean;
   public
     constructor Create(UrlServerThumbor, SecretKey: string);
     constructor CreateWithoutKey(UrlServerThumbor: string);
-
     function BuildImage(Path: string): TThumbor;
     function Resize(Width, Height: Integer): TThumbor;
+    function Quality(Value: Integer): TThumbor;
     function Smart(): TThumbor;
     function ToUrl(): string;
   end;
@@ -55,6 +53,12 @@ end;
 constructor TThumbor.CreateWithoutKey(UrlServerThumbor: string);
 begin
   FUrlServerThumbor := UrlServerThumbor;
+end;
+
+function TThumbor.Quality(Value: Integer): TThumbor;
+begin
+  Result := Self;
+  FQuality := Value;
 end;
 
 function TThumbor.Resize(Width, Height: Integer): TThumbor;
@@ -84,6 +88,9 @@ begin
       StrBuilder.Append(FWidth.ToString + 'x' + FHeight.ToString + '/');
     if FSmart then
       StrBuilder.Append('smart/');
+    if (FQuality > 0) and (FQuality < 100) then
+      StrBuilder.Append('filters:quality(' + FQuality.ToString + ')/');
+
     StrBuilder.Append(FBuildImage);
 
     vUrlParth := TEncoding.UTF8.GetBytes(StrBuilder.ToString);
@@ -105,3 +112,4 @@ begin
 end;
 
 end.
+

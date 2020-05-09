@@ -37,6 +37,8 @@ type
     edtWitdh: TSpinEdit;
     lbl5: TLabel;
     edtHeigth: TSpinEdit;
+    edtQuality: TSpinEdit;
+    lbl6: TLabel;
     procedure btnGenerateByClassClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -65,6 +67,7 @@ begin
       Thumbor
         .BuildImage(edtPathImage.Text)
         .Resize(edtWitdh.Value, edtHeigth.Value)
+        .Quality(edtQuality.Value)
         .Smart()
         .ToUrl();
 
