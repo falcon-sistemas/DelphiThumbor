@@ -105,7 +105,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="uFrmThumbor.pas">
-            <Form>Form4</Form>
+            <Form>frmThumbor</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

@@ -2,7 +2,7 @@ program Thumbor;
 
 uses
   Vcl.Forms,
-  uFrmThumbor in 'uFrmThumbor.pas' {Form4},
+  uFrmThumbor in 'uFrmThumbor.pas' {frmThumbor},
   Vcl.Themes,
   Vcl.Styles;
 
@@ -12,6 +12,6 @@ begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
   TStyleManager.TrySetStyle('Carbon');
-  Application.CreateForm(TForm4, Form4);
+  Application.CreateForm(TfrmThumbor, frmThumbor);
   Application.Run;
 end.

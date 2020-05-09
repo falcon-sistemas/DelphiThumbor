@@ -8,8 +8,7 @@ uses
   System.SysUtils,
   System.Variants,
   System.Classes,
-  System.NetEncoding,
-  System.Hash,
+  System.IniFiles,
   Vcl.Graphics,
   Vcl.Controls,
   Vcl.Forms,
@@ -23,7 +22,7 @@ uses
   FS.Thumbor;
 
 type
-  TForm4 = class(TForm)
+  TfrmThumbor = class(TForm)
     edtSecretKey: TEdit;
     lbl1: TLabel;
     memUrl: TMemo;
@@ -39,21 +38,23 @@ type
     lbl5: TLabel;
     edtHeigth: TSpinEdit;
     procedure btnGenerateByClassClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
     procedure GetImageByUrl(URL: string; APicture: TPicture);
+    procedure LoadConfigIni();
   public
     { Public declarations }
   end;
 
 var
-  Form4: TForm4;
+  frmThumbor: TfrmThumbor;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm4.btnGenerateByClassClick(Sender: TObject);
+procedure TfrmThumbor.btnGenerateByClassClick(Sender: TObject);
 var
   Thumbor: TThumbor;
   vUrlThumbor: string;
@@ -74,7 +75,12 @@ begin
   end;
 end;
 
-procedure TForm4.GetImageByUrl(URL: string; APicture: TPicture);
+procedure TfrmThumbor.FormCreate(Sender: TObject);
+begin
+  LoadConfigIni;
+end;
+
+procedure TfrmThumbor.GetImageByUrl(URL: string; APicture: TPicture);
 var
   Jpeg: TJPEGImage;
   Strm: TMemoryStream;
@@ -96,6 +102,32 @@ begin
     Jpeg.Free;
     Cloud.Free;
   end;
+end;
+
+procedure TfrmThumbor.LoadConfigIni;
+var
+  IniFile: TIniFile;
+  vArqIni: string;
+begin
+  try
+    vArqIni := ExtractFilePath(Application.ExeName) + '\config.ini';
+
+    if not(FileExists(vArqIni)) then
+      Exit;
+
+    IniFile := TIniFile.Create(vArqIni);
+    try
+      edtSecretKey.Text := IniFile.ReadString('THUMBOR', 'KEY', '');
+      edtUrlServerThumbor.Text := IniFile.ReadString('THUMBOR', 'URLSERVERTHUMBOR', '');
+      edtPathImage.Text := IniFile.ReadString('THUMBOR', 'PATHIMAGE', '');
+    finally
+      FreeAndNil(IniFile);
+    end;
+  except
+    on e: Exception do
+      raise Exception.Create('LoadConfigIni '+ e.Message);
+  end;
+
 end;
 
 end.
