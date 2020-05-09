@@ -95,7 +95,8 @@ begin
     end;
 
     vB64 := TEncoding.UTF8.GetString(TNetEncoding.Base64.Encode(vTk));
-    //vB64 := TNetEncoding.URL.Encode(vTk, TURLEncoding.UnsafeChar, TURLEncoding.TEncodeOption.SpacesAsPlus);
+    vB64 := StringReplace(vB64, '+', '-', [rfReplaceAll]);
+    vB64 := StringReplace(vB64, '/', '_', [rfReplaceAll]);
 
     Result := FUrlServerThumbor + vB64 + '/' + StrBuilder.ToString;
   finally
