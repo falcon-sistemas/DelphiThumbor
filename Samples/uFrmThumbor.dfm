@@ -2,7 +2,7 @@ object frmThumbor: TfrmThumbor
   Left = 0
   Top = 0
   Caption = 'Thumbor'
-  ClientHeight = 451
+  ClientHeight = 481
   ClientWidth = 1199
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,7 +15,7 @@ object frmThumbor: TfrmThumbor
   OnCreate = FormCreate
   DesignSize = (
     1199
-    451)
+    481)
   PixelsPerInch = 96
   TextHeight = 13
   object lbl1: TLabel
@@ -32,13 +32,6 @@ object frmThumbor: TfrmThumbor
     Height = 13
     Caption = 'Url Server Thumbor'
   end
-  object lbl3: TLabel
-    Left = 21
-    Top = 186
-    Width = 52
-    Height = 13
-    Caption = 'Image Size'
-  end
   object lbl4: TLabel
     Left = 21
     Top = 132
@@ -50,24 +43,10 @@ object frmThumbor: TfrmThumbor
     Left = 702
     Top = 23
     Width = 475
-    Height = 401
+    Height = 431
     Anchors = [akLeft, akTop, akRight, akBottom]
     AutoSize = True
     ExplicitHeight = 481
-  end
-  object lbl5: TLabel
-    Left = 79
-    Top = 208
-    Width = 6
-    Height = 13
-    Caption = 'X'
-  end
-  object lbl6: TLabel
-    Left = 165
-    Top = 186
-    Width = 34
-    Height = 13
-    Caption = 'Quality'
   end
   object edtSecretKey: TEdit
     Left = 21
@@ -79,12 +58,11 @@ object frmThumbor: TfrmThumbor
   end
   object memUrl: TMemo
     Left = 21
-    Top = 296
+    Top = 352
     Width = 660
-    Height = 128
+    Height = 102
     Anchors = [akLeft, akTop, akBottom]
     TabOrder = 1
-    ExplicitHeight = 115
   end
   object edtUrlServerThumbor: TEdit
     Left = 21
@@ -102,53 +80,99 @@ object frmThumbor: TfrmThumbor
     TabOrder = 3
     TextHint = 'Url Path Image'
   end
-  object chkUseSmart: TCheckBox
-    Left = 258
-    Top = 206
-    Width = 97
-    Height = 17
-    Caption = 'Use Smart'
-    Checked = True
-    State = cbChecked
-    TabOrder = 4
-  end
   object btnGenerateByClass: TBitBtn
     Left = 21
-    Top = 248
+    Top = 321
     Width = 217
     Height = 25
     Caption = 'Get Url Thumbor'
-    TabOrder = 5
+    TabOrder = 4
     OnClick = btnGenerateByClassClick
   end
-  object edtWitdh: TSpinEdit
+  object grpParams: TGroupBox
     Left = 21
-    Top = 204
-    Width = 52
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 6
-    Value = 300
-  end
-  object edtHeigth: TSpinEdit
-    Left = 91
-    Top = 204
-    Width = 52
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 7
-    Value = 0
-  end
-  object edtQuality: TSpinEdit
-    Left = 165
-    Top = 204
-    Width = 73
-    Height = 22
-    MaxValue = 0
-    MinValue = 0
-    TabOrder = 8
-    Value = 90
+    Top = 187
+    Width = 660
+    Height = 126
+    Caption = 'Parameters'
+    TabOrder = 5
+    object lbl3: TLabel
+      Left = 13
+      Top = 21
+      Width = 52
+      Height = 13
+      Caption = 'Image Size'
+    end
+    object lbl5: TLabel
+      Left = 71
+      Top = 44
+      Width = 6
+      Height = 13
+      Caption = 'X'
+    end
+    object lbl6: TLabel
+      Left = 157
+      Top = 21
+      Width = 34
+      Height = 13
+      Caption = 'Quality'
+    end
+    object lbl7: TLabel
+      Left = 13
+      Top = 73
+      Width = 36
+      Height = 13
+      Caption = 'Custom'
+    end
+    object chkUseSmart: TCheckBox
+      Left = 250
+      Top = 45
+      Width = 80
+      Height = 17
+      Caption = 'Use Smart'
+      Checked = True
+      State = cbChecked
+      TabOrder = 0
+    end
+    object edtWitdh: TSpinEdit
+      Left = 13
+      Top = 40
+      Width = 52
+      Height = 22
+      MaxValue = 0
+      MinValue = 0
+      TabOrder = 1
+      Value = 300
+    end
+    object edtHeigth: TSpinEdit
+      Left = 83
+      Top = 40
+      Width = 52
+      Height = 22
+      MaxValue = 0
+      MinValue = 0
+      TabOrder = 2
+      Value = 0
+    end
+    object edtQuality: TSpinEdit
+      Left = 157
+      Top = 40
+      Width = 73
+      Height = 22
+      MaxValue = 0
+      MinValue = 0
+      TabOrder = 3
+      Value = 90
+    end
+    object edtCustom: TEdit
+      Left = 13
+      Top = 92
+      Width = 636
+      Height = 21
+      TabOrder = 4
+      TextHint = 
+        'Ex: 0x250/filters:quality(80):grayscale():round_corner(30,255,25' +
+        '5,255)'
+    end
   end
 end

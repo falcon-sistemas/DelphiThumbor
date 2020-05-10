@@ -28,17 +28,20 @@ type
     memUrl: TMemo;
     edtUrlServerThumbor: TEdit;
     lbl2: TLabel;
-    lbl3: TLabel;
     lbl4: TLabel;
     edtPathImage: TEdit;
-    chkUseSmart: TCheckBox;
     imgThumbor: TImage;
     btnGenerateByClass: TBitBtn;
-    edtWitdh: TSpinEdit;
+    grpParams: TGroupBox;
+    lbl3: TLabel;
     lbl5: TLabel;
+    chkUseSmart: TCheckBox;
+    edtWitdh: TSpinEdit;
     edtHeigth: TSpinEdit;
     edtQuality: TSpinEdit;
     lbl6: TLabel;
+    lbl7: TLabel;
+    edtCustom: TEdit;
     procedure btnGenerateByClassClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -63,13 +66,23 @@ var
 begin
   Thumbor := TThumbor.Create(edtUrlServerThumbor.Text, edtSecretKey.Text);
   try
-    vUrlThumbor :=
-      Thumbor
-        .BuildImage(edtPathImage.Text)
-        .Resize(edtWitdh.Value, edtHeigth.Value)
-        .Quality(edtQuality.Value)
-        .Smart()
-        .ToUrl();
+    if edtCustom.Text = EmptyStr then
+    begin
+      vUrlThumbor :=
+        Thumbor
+          .BuildImage(edtPathImage.Text)
+          .Resize(edtWitdh.Value, edtHeigth.Value)
+          .Quality(edtQuality.Value)
+          .Smart()
+          .ToUrl();
+    end else
+    begin
+      vUrlThumbor :=
+        Thumbor
+          .BuildImage(edtPathImage.Text)
+          .Custom(edtCustom.Text)
+          .ToUrl();
+    end;
 
     memUrl.Lines.Add(vUrlThumbor);
     GetImageByUrl(vUrlThumbor, imgThumbor.Picture);

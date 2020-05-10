@@ -11,7 +11,10 @@ unit FS.Thumbor;
 interface
 
 uses
-  System.Classes, System.SysUtils, System.NetEncoding, System.Hash;
+  System.Classes,
+  System.SysUtils,
+  System.NetEncoding,
+  System.Hash;
 
 type
   TThumbor = class(TObject)
@@ -22,15 +25,21 @@ type
     FBuildImage: string;
     FWidth: Integer;
     FHeight: Integer;
-    FQuality: Integer;
     FSmart: Boolean;
+    FCustom: string;
+    FQuality: Integer;
+    FGrayScale: Boolean;
   public
     constructor Create(UrlServerThumbor, SecretKey: string);
     constructor CreateWithoutKey(UrlServerThumbor: string);
+
     function BuildImage(Path: string): TThumbor;
     function Resize(Width, Height: Integer): TThumbor;
-    function Quality(Value: Integer): TThumbor;
     function Smart(): TThumbor;
+    function Quality(Value: Integer): TThumbor;
+    function GrayScale(): TThumbor;
+    function Custom(Value: string): TThumbor;
+
     function ToUrl(): string;
   end;
 
@@ -53,6 +62,18 @@ end;
 constructor TThumbor.CreateWithoutKey(UrlServerThumbor: string);
 begin
   FUrlServerThumbor := UrlServerThumbor;
+end;
+
+function TThumbor.Custom(Value: string): TThumbor;
+begin
+  Result := Self;
+  FCustom := Value;
+end;
+
+function TThumbor.GrayScale: TThumbor;
+begin
+  Result := Self;
+  FGrayScale := True;
 end;
 
 function TThumbor.Quality(Value: Integer): TThumbor;
@@ -84,12 +105,14 @@ var
 begin
   StrBuilder := TStringBuilder.Create;
   try
-    if (FWidth > 0) or (FHeight > 0) then
+    if (FWidth > 0) or (FHeight > 0) and (FCustom.IsEmpty) then
       StrBuilder.Append(FWidth.ToString + 'x' + FHeight.ToString + '/');
-    if FSmart then
+    if FSmart and (FCustom.IsEmpty) then
       StrBuilder.Append('smart/');
-    if (FQuality > 0) and (FQuality < 100) then
+    if (FQuality > 0) and (FQuality <= 100) and (FCustom.IsEmpty) then
       StrBuilder.Append('filters:quality(' + FQuality.ToString + ')/');
+    if FCustom <> EmptyStr then
+      StrBuilder.Append(FCustom + '/');
 
     StrBuilder.Append(FBuildImage);
 
@@ -107,7 +130,7 @@ begin
 
     Result := FUrlServerThumbor + vB64 + '/' + StrBuilder.ToString;
   finally
-    StrBuilder.Free
+    StrBuilder.Free;
   end;
 end;
 
