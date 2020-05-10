@@ -9,7 +9,7 @@ DelphiThumb is a class to make easier to use the thumbor imaging service (http:/
 <img src="https://github.com/marlonnardi/DelphiThumbor/blob/master/Samples/images/thumbor2.png" height="250" />
 
 ## Prerequisite
-This library wotk with **Delphi 10.3 Rio**, **Delphi 10.2 Tokyo**, **Delphi 10.1 Berlin**, **Delphi 10 Seattle** and **Delphi XE8**
+This library work with **Delphi 10.3 Rio**, **Delphi 10.2 Tokyo**, **Delphi 10.1 Berlin**, **Delphi 10 Seattle** and **Delphi XE8**
 
 #### Libraries/Units dependencies
 This library has no dependencies on external libraries/units.
