@@ -56,5 +56,22 @@ begin
   end;
 ```
 
+#### Using TThumbor Custom dinamic
+
+```delphi
+var
+  Thumbor: TThumbor;
+begin
+  Thumbor := TThumbor.Create('https://urlserverthumbor.com', 'secretkey');
+  try
+    Thumbor
+      .BuildImage('path_image')
+      .Custom('0x250/filters:quality(80):grayscale():round_corner(30,255,255,255)')
+      .ToUrl();
+  finally
+    Thumbor.Free;
+  end;
+```
+
 <hr />
 <div style="text-align:right">Marlon Nardi</div>
