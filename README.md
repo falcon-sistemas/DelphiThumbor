@@ -1,4 +1,4 @@
-# DelphiThumb
+# DelphiThumbor
 
 <br />
 
