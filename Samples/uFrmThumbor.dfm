@@ -3,7 +3,7 @@ object frmThumbor: TfrmThumbor
   Top = 0
   Caption = 'Thumbor'
   ClientHeight = 481
-  ClientWidth = 1199
+  ClientWidth = 1095
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,7 +14,7 @@ object frmThumbor: TfrmThumbor
   Position = poMainFormCenter
   OnCreate = FormCreate
   DesignSize = (
-    1199
+    1095
     481)
   PixelsPerInch = 96
   TextHeight = 13
@@ -42,10 +42,11 @@ object frmThumbor: TfrmThumbor
   object imgThumbor: TImage
     Left = 702
     Top = 23
-    Width = 475
+    Width = 371
     Height = 431
     Anchors = [akLeft, akTop, akRight, akBottom]
     AutoSize = True
+    ExplicitWidth = 475
     ExplicitHeight = 481
   end
   object edtSecretKey: TEdit
